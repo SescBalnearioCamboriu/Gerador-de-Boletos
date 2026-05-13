@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -30,7 +31,6 @@
       flex-direction: column;
     }
 
-    /* ── HEADER ── */
     header {
       background: var(--azul);
       padding: 0 2rem;
@@ -40,6 +40,7 @@
       height: 64px;
       box-shadow: 0 2px 12px rgba(0,0,0,.25);
     }
+
     header .logo-badge {
       background: var(--acento);
       color: var(--azul);
@@ -50,6 +51,7 @@
       border-radius: 6px;
       letter-spacing: .02em;
     }
+
     header h1 {
       color: var(--branco);
       font-size: 1rem;
@@ -58,7 +60,6 @@
       opacity: .9;
     }
 
-    /* ── MAIN ── */
     main {
       flex: 1;
       display: flex;
@@ -82,6 +83,7 @@
       color: var(--azul);
       margin-bottom: .35rem;
     }
+
     .card-sub {
       font-size: .88rem;
       color: var(--cinza);
@@ -89,7 +91,6 @@
       line-height: 1.5;
     }
 
-    /* ── FORM ── */
     label {
       display: block;
       font-size: .8rem;
@@ -104,6 +105,7 @@
       position: relative;
       margin-bottom: 1.25rem;
     }
+
     input[type="text"] {
       width: 100%;
       border: 2px solid var(--borda);
@@ -116,14 +118,17 @@
       transition: border-color .2s, box-shadow .2s;
       outline: none;
     }
+
     input[type="text"]:focus {
       border-color: var(--azul2);
       box-shadow: 0 0 0 4px rgba(0,91,163,.12);
       background: var(--branco);
     }
+
     input[type="text"].erro {
       border-color: var(--erro);
     }
+
     .clear-btn {
       position: absolute;
       right: .75rem;
@@ -138,7 +143,11 @@
       padding: .2rem;
       display: none;
     }
-    .clear-btn.visible { display: block; }
+
+    .clear-btn.visible {
+      display: block;
+    }
+
     .hint {
       font-size: .78rem;
       color: var(--cinza);
@@ -161,23 +170,30 @@
       transition: background .2s, transform .1s, box-shadow .2s;
       box-shadow: 0 3px 12px rgba(0,62,126,.25);
     }
+
     .btn-gerar:hover {
       background: var(--azul2);
       box-shadow: 0 6px 18px rgba(0,62,126,.30);
     }
-    .btn-gerar:active { transform: scale(.98); }
 
-    /* ── RESULTADO ── */
+    .btn-gerar:active {
+      transform: scale(.98);
+    }
+
     .resultado {
       margin-top: 1.75rem;
       display: none;
       animation: slideIn .3s ease;
     }
+
     @keyframes slideIn {
       from { opacity:0; transform:translateY(8px); }
       to   { opacity:1; transform:translateY(0); }
     }
-    .resultado.visivel { display: block; }
+
+    .resultado.visivel {
+      display: block;
+    }
 
     .resultado-label {
       font-size: .8rem;
@@ -199,6 +215,7 @@
       line-height: 1.5;
       margin-bottom: .85rem;
     }
+
     .link-box a {
       color: var(--azul2);
       text-decoration: underline;
@@ -209,6 +226,7 @@
       gap: .65rem;
       flex-wrap: wrap;
     }
+
     .btn-acao {
       flex: 1;
       min-width: 120px;
@@ -225,26 +243,36 @@
       cursor: pointer;
       transition: all .18s;
     }
+
     .btn-copiar {
       background: var(--azul);
       color: #fff;
     }
-    .btn-copiar:hover { background: var(--azul2); }
+
+    .btn-copiar:hover {
+      background: var(--azul2);
+    }
+
     .btn-abrir {
       background: transparent;
       color: var(--azul2);
       border: 1.5px solid var(--borda);
     }
+
     .btn-abrir:hover {
       background: #EBF3FC;
       border-color: var(--azul2);
     }
+
     .btn-novo {
       background: transparent;
       color: var(--cinza);
       border: 1.5px solid var(--borda);
     }
-    .btn-novo:hover { background: var(--fundo); }
+
+    .btn-novo:hover {
+      background: var(--fundo);
+    }
 
     .toast {
       position: fixed;
@@ -264,19 +292,23 @@
       box-shadow: 0 4px 16px rgba(0,0,0,.2);
       z-index: 999;
     }
+
     .toast.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
 
-    /* ── HISTORICO ── */
     .historico-section {
       margin-top: 2rem;
       border-top: 1.5px solid var(--borda);
       padding-top: 1.25rem;
       display: none;
     }
-    .historico-section.visivel { display: block; }
+
+    .historico-section.visivel {
+      display: block;
+    }
+
     .historico-titulo {
       font-size: .78rem;
       font-weight: 600;
@@ -288,6 +320,7 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .limpar-hist {
       background: none;
       border: none;
@@ -297,6 +330,7 @@
       font-family: 'DM Sans', sans-serif;
       text-decoration: underline;
     }
+
     .hist-lista {
       display: flex;
       flex-direction: column;
@@ -304,6 +338,7 @@
       max-height: 180px;
       overflow-y: auto;
     }
+
     .hist-item {
       display: flex;
       align-items: center;
@@ -314,15 +349,18 @@
       font-size: .82rem;
       gap: .5rem;
     }
-    .hist-matricula {
+
+    .hist-cpf {
       font-weight: 600;
       color: var(--azul);
-      min-width: 90px;
+      min-width: 110px;
     }
+
     .hist-acoes {
       display: flex;
       gap: .4rem;
     }
+
     .hist-btn {
       background: none;
       border: 1.5px solid var(--borda);
@@ -334,9 +372,12 @@
       font-family: 'DM Sans', sans-serif;
       transition: all .15s;
     }
-    .hist-btn:hover { background: #EBF3FC; border-color: var(--azul2); }
 
-    /* ── FOOTER ── */
+    .hist-btn:hover {
+      background: #EBF3FC;
+      border-color: var(--azul2);
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -355,29 +396,53 @@
 <main>
   <div class="card">
     <h2 class="card-title">Acesso ao Pagamento</h2>
-    <p class="card-sub">Informe a matrícula do cliente para gerar o link de acesso ao boleto online do SESC-SC.</p>
 
-    <label for="matricula">Matrícula do cliente</label>
+    <p class="card-sub">
+      Informe o CPF do cliente para gerar o link de acesso ao boleto online do SESC-SC.
+    </p>
+
+    <label for="cpf">CPF do cliente</label>
+
     <div class="input-wrap">
-      <input type="text" id="matricula" placeholder="Ex: 9910558327" autocomplete="off" inputmode="numeric" />
+      <input
+        type="text"
+        id="cpf"
+        placeholder="Ex: 08067137986"
+        autocomplete="off"
+        inputmode="numeric"
+        maxlength="11"
+      />
+
       <button class="clear-btn" id="clearBtn" title="Limpar">✕</button>
     </div>
-    <p class="hint">Digite apenas os números, sem traços ou espaços.</p>
+
+    <p class="hint">Digite apenas os números, sem pontos ou traços.</p>
 
     <button class="btn-gerar" onclick="gerarLink()">Gerar Link</button>
 
     <div class="resultado" id="resultado">
       <p class="resultado-label">Link gerado</p>
+
       <div class="link-box" id="linkBox"></div>
+
       <div class="acoes">
         <button class="btn-acao btn-copiar" onclick="copiarLink()">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+          </svg>
           Copiar link
         </button>
+
         <button class="btn-acao btn-abrir" onclick="abrirLink()">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" y1="14" x2="21" y2="3"/>
+          </svg>
           Abrir
         </button>
+
         <button class="btn-acao btn-novo" onclick="novaConsulta()">
           ↺ Nova
         </button>
@@ -389,6 +454,7 @@
         <span>Recentes</span>
         <button class="limpar-hist" onclick="limparHistorico()">Limpar</button>
       </p>
+
       <div class="hist-lista" id="histLista"></div>
     </div>
   </div>
@@ -399,13 +465,15 @@
 <footer>SESC-SC · Boleto Online · Uso interno</footer>
 
 <script>
-  const BASE_URL = 'https://boletoonline.sesc-sc.com.br/BoletoOnline/login?selected=CPF&CAMPO_MATRICULA=0';
-  const BASE_LINK = 'https://boletoonline.sesc-sc.com.br/BoletoOnline/login?selected=CPF&CAMPO_MATRICULA=';
+  const BASE_LINK =
+    'https://boletoonline.sesc-sc.com.br/BoletoOnline/login?TIPO=NADA&selected=CPF&CAMPO_MATRICULA=';
 
   let linkAtual = '';
-  let historico = JSON.parse(localStorage.getItem('sesc_historico') || '[]');
 
-  const input = document.getElementById('matricula');
+  let historico =
+    JSON.parse(localStorage.getItem('sesc_historico') || '[]');
+
+  const input = document.getElementById('cpf');
   const clearBtn = document.getElementById('clearBtn');
 
   input.addEventListener('input', () => {
@@ -425,100 +493,172 @@
   });
 
   function gerarLink() {
-    const mat = input.value.trim();
-    if (!mat) {
+    const cpf = input.value.trim();
+
+    if (!cpf) {
       input.classList.add('erro');
       input.focus();
-      showToast('Informe a matrícula antes de continuar.', true);
+      showToast('Informe o CPF antes de continuar.', true);
       return;
     }
-    // Pad to 11 digits with leading 0 (pattern from spreadsheet: 09910558327)
-    const padded = mat.padStart(11, '0');
-    linkAtual = BASE_LINK + padded;
+
+    linkAtual = BASE_LINK + cpf;
 
     const linkBox = document.getElementById('linkBox');
-    linkBox.innerHTML = `<a href="${linkAtual}" target="_blank" rel="noopener">${linkAtual}</a>`;
+
+    linkBox.innerHTML =
+      `<a href="${linkAtual}" target="_blank" rel="noopener">${linkAtual}</a>`;
+
     document.getElementById('resultado').classList.add('visivel');
 
-    // Salvar no histórico
-    salvarHistorico(mat, linkAtual);
+    salvarHistorico(cpf, linkAtual);
     renderHistorico();
 
-    linkBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    linkBox.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest'
+    });
   }
 
   function copiarLink() {
     if (!linkAtual) return;
+
     navigator.clipboard.writeText(linkAtual).then(() => {
       showToast('✓ Link copiado para a área de transferência!');
     }).catch(() => {
-      // Fallback
       const ta = document.createElement('textarea');
+
       ta.value = linkAtual;
+
       document.body.appendChild(ta);
+
       ta.select();
+
       document.execCommand('copy');
+
       document.body.removeChild(ta);
+
       showToast('✓ Link copiado!');
     });
   }
 
   function abrirLink() {
-    if (linkAtual) window.open(linkAtual, '_blank', 'noopener');
+    if (linkAtual) {
+      window.open(linkAtual, '_blank', 'noopener');
+    }
   }
 
   function novaConsulta() {
     input.value = '';
+
     clearBtn.classList.remove('visible');
+
     document.getElementById('resultado').classList.remove('visivel');
+
     linkAtual = '';
+
     input.focus();
   }
 
-  function salvarHistorico(mat, link) {
-    historico = historico.filter(h => h.mat !== mat);
-    historico.unshift({ mat, link, ts: Date.now() });
-    if (historico.length > 10) historico = historico.slice(0, 10);
-    localStorage.setItem('sesc_historico', JSON.stringify(historico));
+  function salvarHistorico(cpf, link) {
+    historico = historico.filter(h => h.cpf !== cpf);
+
+    historico.unshift({
+      cpf,
+      link,
+      ts: Date.now()
+    });
+
+    if (historico.length > 10) {
+      historico = historico.slice(0, 10);
+    }
+
+    localStorage.setItem(
+      'sesc_historico',
+      JSON.stringify(historico)
+    );
   }
 
   function renderHistorico() {
     const sec = document.getElementById('historicoSection');
     const lista = document.getElementById('histLista');
-    if (historico.length === 0) { sec.classList.remove('visivel'); return; }
+
+    if (historico.length === 0) {
+      sec.classList.remove('visivel');
+      return;
+    }
+
     sec.classList.add('visivel');
+
     lista.innerHTML = historico.map(h => `
       <div class="hist-item">
-        <span class="hist-matricula">${h.mat}</span>
-        <span style="color:var(--cinza);font-size:.75rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${h.link}</span>
+        <span class="hist-cpf">${h.cpf}</span>
+
+        <span
+          style="
+            color:var(--cinza);
+            font-size:.75rem;
+            flex:1;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap
+          "
+        >
+          ${h.link}
+        </span>
+
         <div class="hist-acoes">
-          <button class="hist-btn" onclick="copiarDireto('${h.link}')">Copiar</button>
-          <button class="hist-btn" onclick="window.open('${h.link}','_blank','noopener')">Abrir</button>
+          <button
+            class="hist-btn"
+            onclick="copiarDireto('${h.link}')"
+          >
+            Copiar
+          </button>
+
+          <button
+            class="hist-btn"
+            onclick="window.open('${h.link}','_blank','noopener')"
+          >
+            Abrir
+          </button>
         </div>
       </div>
     `).join('');
   }
 
   function copiarDireto(link) {
-    navigator.clipboard.writeText(link).then(() => showToast('✓ Link copiado!')).catch(() => {});
+    navigator.clipboard
+      .writeText(link)
+      .then(() => showToast('✓ Link copiado!'))
+      .catch(() => {});
   }
 
   function limparHistorico() {
     historico = [];
+
     localStorage.removeItem('sesc_historico');
+
     renderHistorico();
   }
 
   function showToast(msg, isErro = false) {
     const t = document.getElementById('toast');
+
     t.textContent = msg;
-    t.style.background = isErro ? 'var(--erro)' : 'var(--sucesso)';
+
+    t.style.background =
+      isErro ? 'var(--erro)' : 'var(--sucesso)';
+
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2800);
+
+    setTimeout(() => {
+      t.classList.remove('show');
+    }, 2800);
   }
 
-  // Render histórico ao carregar
   renderHistorico();
 </script>
+
 </body>
 </html>
+```
