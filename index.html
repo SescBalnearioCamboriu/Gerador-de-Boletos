@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SESC · Links de Boletos</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul:    #003E7E;
+      --azul2:   #005BA3;
+      --acento:  #F5A623;
+      --fundo:   #F0F4F9;
+      --branco:  #FFFFFF;
+      --texto:   #1A2B45;
+      --cinza:   #6B7E99;
+      --borda:   #C9D8EB;
+      --sucesso: #1A7F5A;
+      --erro:    #C0392B;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--azul);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      height: 64px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    header .logo-badge {
+      background: var(--acento);
+      color: var(--azul);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding: .2rem .75rem;
+      border-radius: 6px;
+      letter-spacing: .02em;
+    }
+    header h1 {
+      color: var(--branco);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+      opacity: .9;
+    }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+    }
+
+    .card {
+      background: var(--branco);
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(0,62,126,.10);
+      padding: 2.5rem 2.5rem 2rem;
+      width: 100%;
+      max-width: 540px;
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--azul);
+      margin-bottom: .35rem;
+    }
+    .card-sub {
+      font-size: .88rem;
+      color: var(--cinza);
+      margin-bottom: 2rem;
+      line-height: 1.5;
+    }
+
+    /* ── FORM ── */
+    label {
+      display: block;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--azul2);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .45rem;
+    }
+
+    .input-wrap {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      border: 2px solid var(--borda);
+      border-radius: 10px;
+      padding: .75rem 3rem .75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--texto);
+      background: var(--fundo);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    input[type="text"]:focus {
+      border-color: var(--azul2);
+      box-shadow: 0 0 0 4px rgba(0,91,163,.12);
+      background: var(--branco);
+    }
+    input[type="text"].erro {
+      border-color: var(--erro);
+    }
+    .clear-btn {
+      position: absolute;
+      right: .75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--cinza);
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: .2rem;
+      display: none;
+    }
+    .clear-btn.visible { display: block; }
+    .hint {
+      font-size: .78rem;
+      color: var(--cinza);
+      margin-top: -.8rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-gerar {
+      width: 100%;
+      background: var(--azul);
+      color: var(--branco);
+      border: none;
+      border-radius: 10px;
+      padding: .85rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: .02em;
+      transition: background .2s, transform .1s, box-shadow .2s;
+      box-shadow: 0 3px 12px rgba(0,62,126,.25);
+    }
+    .btn-gerar:hover {
+      background: var(--azul2);
+      box-shadow: 0 6px 18px rgba(0,62,126,.30);
+    }
+    .btn-gerar:active { transform: scale(.98); }
+
+    /* ── RESULTADO ── */
+    .resultado {
+      margin-top: 1.75rem;
+      display: none;
+      animation: slideIn .3s ease;
+    }
+    @keyframes slideIn {
+      from { opacity:0; transform:translateY(8px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .resultado.visivel { display: block; }
+
+    .resultado-label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--azul2);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .5rem;
+    }
+
+    .link-box {
+      background: #EBF3FC;
+      border: 1.5px solid var(--borda);
+      border-radius: 10px;
+      padding: .85rem 1rem;
+      font-size: .85rem;
+      color: var(--azul2);
+      word-break: break-all;
+      line-height: 1.5;
+      margin-bottom: .85rem;
+    }
+    .link-box a {
+      color: var(--azul2);
+      text-decoration: underline;
+    }
+
+    .acoes {
+      display: flex;
+      gap: .65rem;
+      flex-wrap: wrap;
+    }
+    .btn-acao {
+      flex: 1;
+      min-width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      border: none;
+      border-radius: 8px;
+      padding: .65rem .9rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .18s;
+    }
+    .btn-copiar {
+      background: var(--azul);
+      color: #fff;
+    }
+    .btn-copiar:hover { background: var(--azul2); }
+    .btn-abrir {
+      background: transparent;
+      color: var(--azul2);
+      border: 1.5px solid var(--borda);
+    }
+    .btn-abrir:hover {
+      background: #EBF3FC;
+      border-color: var(--azul2);
+    }
+    .btn-novo {
+      background: transparent;
+      color: var(--cinza);
+      border: 1.5px solid var(--borda);
+    }
+    .btn-novo:hover { background: var(--fundo); }
+
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--sucesso);
+      color: #fff;
+      padding: .65rem 1.5rem;
+      border-radius: 50px;
+      font-size: .875rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s, transform .25s;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(0,0,0,.2);
+      z-index: 999;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── HISTORICO ── */
+    .historico-section {
+      margin-top: 2rem;
+      border-top: 1.5px solid var(--borda);
+      padding-top: 1.25rem;
+      display: none;
+    }
+    .historico-section.visivel { display: block; }
+    .historico-titulo {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--cinza);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: .75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .limpar-hist {
+      background: none;
+      border: none;
+      font-size: .75rem;
+      color: var(--erro);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: underline;
+    }
+    .hist-lista {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    .hist-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--fundo);
+      border-radius: 8px;
+      padding: .5rem .8rem;
+      font-size: .82rem;
+      gap: .5rem;
+    }
+    .hist-matricula {
+      font-weight: 600;
+      color: var(--azul);
+      min-width: 90px;
+    }
+    .hist-acoes {
+      display: flex;
+      gap: .4rem;
+    }
+    .hist-btn {
+      background: none;
+      border: 1.5px solid var(--borda);
+      border-radius: 6px;
+      padding: .22rem .55rem;
+      font-size: .75rem;
+      cursor: pointer;
+      color: var(--azul2);
+      font-family: 'DM Sans', sans-serif;
+      transition: all .15s;
+    }
+    .hist-btn:hover { background: #EBF3FC; border-color: var(--azul2); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: .75rem;
+      color: var(--cinza);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="logo-badge">SESC</span>
+  <h1>Gerador de Links de Boletos</h1>
+</header>
+
+<main>
+  <div class="card">
+    <h2 class="card-title">Acesso ao Pagamento</h2>
+    <p class="card-sub">Informe a matrícula do cliente para gerar o link de acesso ao boleto online do SESC-SC.</p>
+
+    <label for="matricula">Matrícula do cliente</label>
+    <div class="input-wrap">
+      <input type="text" id="matricula" placeholder="Ex: 9910558327" autocomplete="off" inputmode="numeric" />
+      <button class="clear-btn" id="clearBtn" title="Limpar">✕</button>
+    </div>
+    <p class="hint">Digite apenas os números, sem traços ou espaços.</p>
+
+    <button class="btn-gerar" onclick="gerarLink()">Gerar Link</button>
+
+    <div class="resultado" id="resultado">
+      <p class="resultado-label">Link gerado</p>
+      <div class="link-box" id="linkBox"></div>
+      <div class="acoes">
+        <button class="btn-acao btn-copiar" onclick="copiarLink()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Copiar link
+        </button>
+        <button class="btn-acao btn-abrir" onclick="abrirLink()">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Abrir
+        </button>
+        <button class="btn-acao btn-novo" onclick="novaConsulta()">
+          ↺ Nova
+        </button>
+      </div>
+    </div>
+
+    <div class="historico-section" id="historicoSection">
+      <p class="historico-titulo">
+        <span>Recentes</span>
+        <button class="limpar-hist" onclick="limparHistorico()">Limpar</button>
+      </p>
+      <div class="hist-lista" id="histLista"></div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<footer>SESC-SC · Boleto Online · Uso interno</footer>
+
+<script>
+  const BASE_URL = 'https://boletoonline.sesc-sc.com.br/BoletoOnline/login?selected=Matricula&CAMPO_MATRICULA=0';
+  const BASE_LINK = 'https://boletoonline.sesc-sc.com.br/BoletoOnline/login?selected=Matricula&CAMPO_MATRICULA=';
+
+  let linkAtual = '';
+  let historico = JSON.parse(localStorage.getItem('sesc_historico') || '[]');
+
+  const input = document.getElementById('matricula');
+  const clearBtn = document.getElementById('clearBtn');
+
+  input.addEventListener('input', () => {
+    input.value = input.value.replace(/\D/g, '');
+    clearBtn.classList.toggle('visible', input.value.length > 0);
+    input.classList.remove('erro');
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') gerarLink();
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.classList.remove('visible');
+    input.focus();
+  });
+
+  function gerarLink() {
+    const mat = input.value.trim();
+    if (!mat) {
+      input.classList.add('erro');
+      input.focus();
+      showToast('Informe a matrícula antes de continuar.', true);
+      return;
+    }
+    // Pad to 11 digits with leading 0 (pattern from spreadsheet: 09910558327)
+    const padded = mat.padStart(11, '0');
+    linkAtual = BASE_LINK + padded;
+
+    const linkBox = document.getElementById('linkBox');
+    linkBox.innerHTML = `<a href="${linkAtual}" target="_blank" rel="noopener">${linkAtual}</a>`;
+    document.getElementById('resultado').classList.add('visivel');
+
+    // Salvar no histórico
+    salvarHistorico(mat, linkAtual);
+    renderHistorico();
+
+    linkBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function copiarLink() {
+    if (!linkAtual) return;
+    navigator.clipboard.writeText(linkAtual).then(() => {
+      showToast('✓ Link copiado para a área de transferência!');
+    }).catch(() => {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = linkAtual;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('✓ Link copiado!');
+    });
+  }
+
+  function abrirLink() {
+    if (linkAtual) window.open(linkAtual, '_blank', 'noopener');
+  }
+
+  function novaConsulta() {
+    input.value = '';
+    clearBtn.classList.remove('visible');
+    document.getElementById('resultado').classList.remove('visivel');
+    linkAtual = '';
+    input.focus();
+  }
+
+  function salvarHistorico(mat, link) {
+    historico = historico.filter(h => h.mat !== mat);
+    historico.unshift({ mat, link, ts: Date.now() });
+    if (historico.length > 10) historico = historico.slice(0, 10);
+    localStorage.setItem('sesc_historico', JSON.stringify(historico));
+  }
+
+  function renderHistorico() {
+    const sec = document.getElementById('historicoSection');
+    const lista = document.getElementById('histLista');
+    if (historico.length === 0) { sec.classList.remove('visivel'); return; }
+    sec.classList.add('visivel');
+    lista.innerHTML = historico.map(h => `
+      <div class="hist-item">
+        <span class="hist-matricula">${h.mat}</span>
+        <span style="color:var(--cinza);font-size:.75rem;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${h.link}</span>
+        <div class="hist-acoes">
+          <button class="hist-btn" onclick="copiarDireto('${h.link}')">Copiar</button>
+          <button class="hist-btn" onclick="window.open('${h.link}','_blank','noopener')">Abrir</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function copiarDireto(link) {
+    navigator.clipboard.writeText(link).then(() => showToast('✓ Link copiado!')).catch(() => {});
+  }
+
+  function limparHistorico() {
+    historico = [];
+    localStorage.removeItem('sesc_historico');
+    renderHistorico();
+  }
+
+  function showToast(msg, isErro = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.background = isErro ? 'var(--erro)' : 'var(--sucesso)';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // Render histórico ao carregar
+  renderHistorico();
+</script>
+</body>
+</html>
